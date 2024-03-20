@@ -1,6 +1,11 @@
 # esocialService
 Serviço para envio de arquivos esocial - C# .net
 Sistema realiza a seleção dos dados de profissionais, monta o xml correspondente,assina com o certificado digital, e faz o envio pelo web service.
+Os eventos disponíveis nessa versão são:
+S-1200
+S-1210
+S-2299
+S-3000
 
 Acessando os serviços do eSocial na web (Web Services)
 
