@@ -17,9 +17,9 @@ namespace Esocial_Service.Service
 {
     public class EsocialService
     {
-        public static void EnviaLoteEventos(string path)
+        public static void EnviaLoteEventos(string path,bool producao)
         {
-            bool producao = false;
+            
             // Carrega o certificado digital a partir de um arquivo PFX, informando a senha.
             //X509Certificate2 x509Cert = new X509Certificate2(caminhoArquivoPfx, senhaArquivoPfx);
             X509Certificate2 cert = new X509Certificate2();
@@ -31,15 +31,14 @@ namespace Esocial_Service.Service
 
             // Carrega o XML de lote a partir de um arquivo.
             // Mas os XMLs dos eventos devem ser assinados digitalmente antes de inseridos no XML de lote.
-            // Para isso é possível usar a função SignXmlDoc() disponível na resposta abaixo:
-            // https://pt.stackoverflow.com/a/277476/
+            // Para isso é possível usar a função SignXmlDoc()
             XDocument loteEventosXDoc = XDocument.Load(path);
 
             var urlServicoEnvio = @"https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc";
             //  if (producao)
-            //    urlServicoEnvio = String.Format(urlServicoEnvio, "reinf");
+            //    urlServicoEnvio = String.Format(urlServicoEnvio, "eSocial");
             //else
-            //  urlServicoEnvio = String.Format(urlServicoEnvio, "preprodefdreinf");
+            //  urlServicoEnvio = String.Format(urlServicoEnvio, "preprodefdeSocial");
 
             var address = new EndpointAddress(urlServicoEnvio);
             // BasicHttpsBinding está disponível somente a partir do .NET Framework 4.5.
@@ -62,8 +61,16 @@ namespace Esocial_Service.Service
             // Chama o WebService de fato, passando o XML do lote.
             // O método espera um objeto do tipo XElement, e retorna outro objeto XElement.
             var retornoEnvioXElement = wsClient.EnviarLoteEventos(loteEventosXDoc.Root);
+            RecepcionaLoteRetorno(retornoEnvioXElement,path);
             wsClient.Close();
 
+        }
+
+        private static void RecepcionaLoteRetorno(XElement retorno,string nome)
+        {
+            //salva no disco
+            
+            retorno.Save(@"C:\temp\" + "Retorno_" + nome);
         }
     }
 }

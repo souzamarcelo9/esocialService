@@ -70,6 +70,12 @@
     <Compile Include="Classes\TIdeEveFopag.cs" />
     <Compile Include="Classes\TInfoExclusaoIdeFolhaPagto.cs" />
     <Compile Include="Classes\TItemRemuneracao.cs" />
+    <Compile Include="Classes\XmlUtil.cs" />
+    <Compile Include="Dominio\EventoDeslig.cs" />
+    <Compile Include="Dominio\EventoExclusao.cs" />
+    <Compile Include="Dominio\EventoPagtos.cs" />
+    <Compile Include="Dominio\EventoRemun.cs" />
+    <Compile Include="Eventos\EnvioLoteEventos.cs" />
     <Compile Include="Eventos\EvtDeslig2299.cs" />
     <Compile Include="Eventos\EvtExclusao3000.cs" />
     <Compile Include="Eventos\EvtPgtos1210.cs" />

@@ -3,3 +3,4 @@ C:\Users\shaolindragon13\documents\visual studio 2015\Projects\Esocial_Service\E
 C:\Users\shaolindragon13\documents\visual studio 2015\Projects\Esocial_Service\Esocial_Service\bin\Debug\Esocial_Service.pdb
 C:\Users\shaolindragon13\documents\visual studio 2015\Projects\Esocial_Service\Esocial_Service\obj\Debug\Esocial_Service.exe
 C:\Users\shaolindragon13\documents\visual studio 2015\Projects\Esocial_Service\Esocial_Service\obj\Debug\Esocial_Service.pdb
+C:\Users\shaolindragon13\documents\visual studio 2015\Projects\Esocial_Service\Esocial_Service\obj\Debug\Esocial_Service.csprojResolveAssemblyReference.cache

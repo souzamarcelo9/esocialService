@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Esocial_Service
 {
-    public class EvtPagtos1210
+    public class EvtPgtos1210
     {
         private string id;
 
