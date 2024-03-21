@@ -43,6 +43,8 @@ namespace Esocial_Service.Dominio
 
             infoPagto.DtPgto = "2023-06-06";
             infoPagto.TpPgto = 1;
+
+            infoPagto.DetPgtoFl = new EvtPgtosIdeBenefInfoPgtoDetPgtoFl();
             infoPagto.DetPgtoFl.perRef = "2023-05";
             infoPagto.DetPgtoFl.ideRecPgto = "5";
             infoPagto.DetPgtoFl.vlrPgto = 1067.28M;
@@ -52,9 +54,13 @@ namespace Esocial_Service.Dominio
 
             infoPagto.DtPgto = "2023-06-07";
             infoPagto.TpPgto = 1;
+            infoPagto.DetPgtoFl = new EvtPgtosIdeBenefInfoPgtoDetPgtoFl();
             infoPagto.DetPgtoFl.perRef = "2023-06";
             infoPagto.DetPgtoFl.ideRecPgto = "6";
             infoPagto.DetPgtoFl.vlrPgto = 9071.98M;
+
+            //informação ir complementar
+            evento1210.InfoPagto.IdeBenef.InfoIRComplem = new List<EvtoPagtoInfoIRComplem>();
 
             evento1210.InfoPagto.IdeBenef.InfoPgto.Add(infoPagto);
 

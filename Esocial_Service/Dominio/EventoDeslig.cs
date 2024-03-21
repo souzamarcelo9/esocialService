@@ -184,7 +184,7 @@ namespace Esocial_Service.Dominio
             new XElement(ns + "evtDeslig", new XAttribute("Id", evento.Id),
              new XElement(ns + "ideEvento",
                    new XElement(ns + "indRetif", evento.IdeEvento.indRetif),
-                   new XElement(ns + "nrRecibo", evento.IdeEvento.perApur),
+                   new XElement(ns + "nrRecibo", evento.IdeEvento.nrRecibo),
                    new XElement(ns + "tpAmb", evento.IdeEvento.tpAmb),
                    new XElement(ns + "procEmi", evento.IdeEvento.procEmi),
                    new XElement(ns + "verProc", evento.IdeEvento.verProc)),
@@ -206,13 +206,14 @@ namespace Esocial_Service.Dominio
 
                     //verbasResc                
                     evento.InfoDeslig.VerbasResc.DmDev.Select(dmDev =>
-                 new XElement(ns + "dmDev",
-                  new XElement(ns + "ideDmDev", dmDev.IdeDmDev),
-                        new XElement(ns + "infoPerApur",
+                 new XElement(ns + "verbasResc",
+                  new XElement(ns + "dmDev",
+                   new XElement(ns + "ideDmDev", dmDev.IdeDmDev),
+                         new XElement(ns + "infoPerApur",
                                new XElement(ns + "ideEstabLot",
                                   new XElement(ns + "tpInsc", dmDev.IdeEstabLot.tpInsc),
                                   new XElement(ns + "nrInsc", dmDev.IdeEstabLot.nrInsc),
-                                  new XElement(ns + "codLotacao", dmDev.IdeEstabLot.codLotacao)),
+                                  new XElement(ns + "codLotacao", dmDev.IdeEstabLot.codLotacao),
 
                  dmDev.IdeEstabLot.RemunPerApuracao.DetVerbas.Select(itemRemun =>
                                         new XElement(ns + "detVerbas",
@@ -223,7 +224,7 @@ namespace Esocial_Service.Dominio
                                          new XElement(ns + "indApurIR", itemRemun.IndApuracaoField))),
                                    new XElement(ns + "infoAgNocivo",
                                         new XElement(ns + "grauExp", dmDev.IdeEstabLot.RemunPerApuracao.InfoAgNocivo.grauExp)
-                                   )
+                                   ))
                               ))
 
 
@@ -231,7 +232,7 @@ namespace Esocial_Service.Dominio
 
                     ))//eSocial
 
-                ); //document                                                                                 
+                )); //document                                                                                 
 
 
             caminhoArquivo = @"C:\temp\EvtDeslig2299.xml";

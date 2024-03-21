@@ -66,7 +66,7 @@ namespace Esocial_Service.Dominio
                           new XElement(ns + "ideTrabalhador",
                                      new XElement(ns + "cpfTrab", evento.InfoExclusao.IdeTrabalhador.CpfTrabField)),
                           new XElement(ns + "ideFolhaPagto",
-                                     new XElement("perApur", evento.InfoExclusao.IdeFolhaPagto.perApur)))
+                                     new XElement(ns+"perApur", evento.InfoExclusao.IdeFolhaPagto.perApur)))
                     ))
                 //recibos
 
