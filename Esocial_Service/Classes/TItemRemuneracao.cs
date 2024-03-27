@@ -12,7 +12,7 @@ namespace Esocial_Service
 
         private string ideTabRubrField;
 
-        private decimal qtdRubrField;
+        private string qtdRubrField;
 
         private bool qtdRubrFieldSpecified;
 
@@ -24,11 +24,11 @@ namespace Esocial_Service
 
         private sbyte indApuracaoField;
 
-        private decimal fatorRubr;
+        private string fatorRubr;
 
 
         /// <remarks/>
-        public string codRubr
+        public string CodRubr
         {
             get
             {
@@ -41,7 +41,7 @@ namespace Esocial_Service
         }
 
         /// <remarks/>
-        public string ideTabRubr
+        public string IdeTabRubr
         {
             get
             {
@@ -54,7 +54,7 @@ namespace Esocial_Service
         }
 
         /// <remarks/>
-        public decimal qtdRubr
+        public string QtdRubr
         {
             get
             {
@@ -68,7 +68,7 @@ namespace Esocial_Service
 
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool qtdRubrSpecified
+        public bool QtdRubrSpecified
         {
             get
             {
@@ -81,7 +81,7 @@ namespace Esocial_Service
         }
 
         /// <remarks/>
-        public decimal vrUnit
+        public decimal VrUnit
         {
             get
             {
@@ -95,7 +95,7 @@ namespace Esocial_Service
 
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool vrUnitSpecified
+        public bool VrUnitSpecified
         {
             get
             {
@@ -108,7 +108,7 @@ namespace Esocial_Service
         }
 
         /// <remarks/>
-        public decimal vrRubr
+        public decimal VrRubr
         {
             get
             {
@@ -133,7 +133,7 @@ namespace Esocial_Service
             }
         }
 
-        public decimal FatorRubr
+        public string FatorRubr
         {
             get
             {

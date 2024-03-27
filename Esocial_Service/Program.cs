@@ -32,7 +32,7 @@ namespace Esocial_Service
         public static string xmlns3000 = "http://www.esocial.gov.br/schema/evt/evtExclusao/v_S_01_01_00";
 
         static void Main(string[] args)
-        {   
+        {                        
             Console.WriteLine("Qual evento deseja gerar:");
             string evento = Console.ReadLine();
 
@@ -117,9 +117,7 @@ namespace Esocial_Service
             pathS1200 = EnvioLoteEventos.AdicionaXmlSLote(arquivoAssinado,xmlns3000, "evtExclusao");
             //
             EsocialService.EnviaLoteEventos(pathS1200,false);
-        }                                                        
-        
-        
-        
+        }
+               
     }
 }

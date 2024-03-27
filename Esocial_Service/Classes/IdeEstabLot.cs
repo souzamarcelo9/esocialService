@@ -14,11 +14,15 @@ namespace Esocial_Service
 
         private string codLotacaoField;
 
+        private string qtdDiasAv;
+
         private RemunPeriodoApuracao remunPerApuracao;
-       
+
+        private RemunPeriodoAnterior remunPerAnt;
+
 
         /// <remarks/>
-        public sbyte tpInsc
+        public sbyte TpInsc
         {
             get
             {
@@ -31,7 +35,7 @@ namespace Esocial_Service
         }
 
         /// <remarks/>
-        public string nrInsc
+        public string NrInsc
         {
             get
             {
@@ -44,7 +48,7 @@ namespace Esocial_Service
         }
 
         /// <remarks/>
-        public string codLotacao
+        public string CodLotacao
         {
             get
             {
@@ -66,6 +70,32 @@ namespace Esocial_Service
             set
             {
                 remunPerApuracao = value;
+            }
+        }
+
+        public string QtdDiasAv
+        {
+            get
+            {
+                return qtdDiasAv;
+            }
+
+            set
+            {
+                qtdDiasAv = value;
+            }
+        }
+
+        public RemunPeriodoAnterior RemunPerAnt
+        {
+            get
+            {
+                return remunPerAnt;
+            }
+
+            set
+            {
+                remunPerAnt = value;
             }
         }
     }

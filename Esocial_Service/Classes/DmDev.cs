@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Esocial_Service.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,12 @@ namespace Esocial_Service
 
         private string codCategField;
 
-        private IdeEstabLot ideEstabLot;
+        private TInfoPerApuracao infoPerApur;
+
+        private TInfoPerAnt infoPerAnt;
+
+        private TInfoComplCont infoComplCont;
+        
 
         public string IdeDmDev
         {
@@ -38,18 +44,44 @@ namespace Esocial_Service
             {
                 codCategField = value;
             }
-        }
+        }        
 
-        public IdeEstabLot IdeEstabLot
+        public TInfoPerApuracao InfoPerApur
         {
             get
             {
-                return ideEstabLot;
+                return infoPerApur;
             }
 
             set
             {
-                ideEstabLot = value;
+                infoPerApur = value;
+            }
+        }
+
+        public TInfoPerAnt InfoPerAnt
+        {
+            get
+            {
+                return infoPerAnt;
+            }
+
+            set
+            {
+                infoPerAnt = value;
+            }
+        }
+
+        public TInfoComplCont InfoComplCont
+        {
+            get
+            {
+                return infoComplCont;
+            }
+
+            set
+            {
+                infoComplCont = value;
             }
         }
     }

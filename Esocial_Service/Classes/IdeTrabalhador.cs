@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Esocial_Service.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,10 +12,19 @@ namespace Esocial_Service
 
             private string cpfTrabField;
 
-            private string nisTrabField;           
+            private string nisTrabField;   
+        
+            private TInfoMV infoMV;
 
-            /// <remarks/>
-            public string CpfTrabField
+            TInfoComplem infoComplem;
+
+            List<TProcJudTrab> procJudTrab;
+
+            List<TInfoInterm> infoInterm;
+      
+
+        /// <remarks/>
+        public string CpfTrabField
             {
                 get
                 {
@@ -36,6 +46,58 @@ namespace Esocial_Service
             set
             {
                 nisTrabField = value;
+            }
+        }
+
+        public TInfoMV InfoMV
+        {
+            get
+            {
+                return infoMV;
+            }
+
+            set
+            {
+                infoMV = value;
+            }
+        }
+
+        public TInfoComplem InfoComplem
+        {
+            get
+            {
+                return infoComplem;
+            }
+
+            set
+            {
+                infoComplem = value;
+            }
+        }
+
+        public List<TProcJudTrab> ProcJudTrab
+        {
+            get
+            {
+                return procJudTrab;
+            }
+
+            set
+            {
+                procJudTrab = value;
+            }
+        }
+
+        public List<TInfoInterm> InfoInterm
+        {
+            get
+            {
+                return infoInterm;
+            }
+
+            set
+            {
+                infoInterm = value;
             }
         }
     }

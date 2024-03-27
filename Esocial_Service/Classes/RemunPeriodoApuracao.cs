@@ -10,7 +10,9 @@ namespace Esocial_Service
     {
         private string matricula;
 
-        private List<TItemRemuneracao> remunPerAntField;
+        private string indSimples;
+
+        private List<TItemRemuneracao> remunPerField;
 
         private InfoAgNocivo infoAgNocivo;
 
@@ -29,16 +31,16 @@ namespace Esocial_Service
             }
         }
 
-        public List<TItemRemuneracao> RemunPerAntField
+        public List<TItemRemuneracao> RemunPerField
         {
             get
             {
-                return remunPerAntField;
+                return remunPerField;
             }
 
             set
             {
-                remunPerAntField = value;
+                remunPerField = value;
             }
         }
 
@@ -65,6 +67,19 @@ namespace Esocial_Service
             set
             {
                 detVerbas = value;
+            }
+        }
+
+        public string IndSimples
+        {
+            get
+            {
+                return indSimples;
+            }
+
+            set
+            {
+                indSimples = value;
             }
         }
     }
