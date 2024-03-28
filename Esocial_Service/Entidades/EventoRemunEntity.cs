@@ -512,13 +512,18 @@ namespace Esocial_Service.Entidades
                     evtRemunEntity.Versao_layout_evtRemun = reader.GetString(29);
                     evtRemunEntity.Trabalho_intermitente_quantidade_dias = reader.GetString(30);
                     evtRemunEntity.Id_cadastro_envios = reader.GetInt32(31);
-                    evtRemunEntity.Nome_arquivo_importado = reader.GetString(32);
+
+                    if (!reader.IsDBNull(32))
+                    {
+                        evtRemunEntity.Nome_arquivo_importado = reader.GetString(32);
+                    }
+                    
 
                     listaEventos.Add(evtRemunEntity);
                 }
                 dbCon.Close();
             }
-            return new List<EventoRemunEntity>();
+            return listaEventos;
         }
 
         public List<EvtRemun_InfoMVEntity> GetInfoMV()
@@ -720,10 +725,11 @@ namespace Esocial_Service.Entidades
                     evtRemunEntity = new EvtRemun_DmDevEntity();
                     evtRemunEntity.Id = reader.GetInt32(0);
                     evtRemunEntity.Id_projeto = reader.GetInt32(1);
-                    evtRemunEntity.Id_cad_evtremun = reader.GetInt32(2);
-                    evtRemunEntity.DmDev_ideDmDev = reader.GetString(3);
-                    evtRemunEntity.DmDev_icodCateg = reader.GetString(4);
-                    evtRemunEntity.Id_cadastro_envios = reader.GetInt32(5);
+                    evtRemunEntity.Id_usuario = reader.GetInt16(2);
+                    evtRemunEntity.Id_cad_evtremun = reader.GetInt32(3);
+                    evtRemunEntity.DmDev_ideDmDev = reader.GetString(4);
+                    evtRemunEntity.DmDev_icodCateg = reader.GetString(5);
+                    evtRemunEntity.Id_cadastro_envios = reader.GetInt32(6);
 
                     listaEventos.Add(evtRemunEntity);
                 }
@@ -750,13 +756,14 @@ namespace Esocial_Service.Entidades
                     evtRemunEntity = new EvtRemun_DmDev_IdeEstablotEntity();
                     evtRemunEntity.Id = reader.GetInt32(0);
                     evtRemunEntity.Id_projeto = reader.GetInt32(1);
-                    evtRemunEntity.Id_cad_evtremun = reader.GetInt32(2);
-                    evtRemunEntity.Id_s_1200_dmdev = reader.GetInt32(3);
-                    evtRemunEntity.IdeEstabLot_tpInsc = sbyte.Parse(reader.GetString(4));
-                    evtRemunEntity.IdeEstabLot_nrInsc = reader.GetString(5);
-                    evtRemunEntity.IdeEstabLot_codLotacao = reader.GetString(6);
-                    evtRemunEntity.IdeEstabLot_qtdDiasAv = reader.GetString(7);
-                    evtRemunEntity.Id_cadastro_envios = reader.GetInt32(8);
+                    evtRemunEntity.Id_usuario = reader.GetInt16(2);
+                    evtRemunEntity.Id_cad_evtremun = reader.GetInt32(3);
+                    evtRemunEntity.Id_s_1200_dmdev = reader.GetInt32(4);
+                    evtRemunEntity.IdeEstabLot_tpInsc = reader.GetInt16(5);
+                    evtRemunEntity.IdeEstabLot_nrInsc = reader.GetString(6);
+                    evtRemunEntity.IdeEstabLot_codLotacao = reader.GetString(7);
+                    evtRemunEntity.IdeEstabLot_qtdDiasAv = reader.GetString(8);
+                    evtRemunEntity.Id_cadastro_envios = reader.GetInt32(9);
 
                     listaEventos.Add(evtRemunEntity);
                 }
@@ -785,7 +792,7 @@ namespace Esocial_Service.Entidades
                     evtRemunEntity.Id_projeto = reader.GetInt32(1);
                     evtRemunEntity.Id_cad_evtremun = reader.GetInt32(2);
                     evtRemunEntity.Id_s_1200_dmdev = reader.GetInt32(3);
-                    evtRemunEntity.Id_dmdev_periodo_ideestablot = int.Parse(reader.GetString(4));
+                    evtRemunEntity.Id_dmdev_periodo_ideestablot = reader.GetInt32(4);
                     evtRemunEntity.RemunPerApur_matricula = reader.GetString(5);
                     evtRemunEntity.RemunPerApur_indSimples = reader.GetString(6);
                     evtRemunEntity.Id_cadastro_envio = reader.GetInt32(7);                    
@@ -815,27 +822,28 @@ namespace Esocial_Service.Entidades
                     evtRemunEntity = new EvtRemun_ItemRemuneracaoEntity();
                     evtRemunEntity.Id = reader.GetInt32(0);
                     evtRemunEntity.Id_projeto = reader.GetInt32(1);
-                    evtRemunEntity.Id_cad_evtremun = reader.GetInt32(2);
-                    evtRemunEntity.Id_dmdev = reader.GetInt32(3);
-                    evtRemunEntity.Id_dmdev_periodo_ideestablot = reader.GetInt32(4);
-                    evtRemunEntity.Id_periodo_ideestablot_matricula = reader.GetInt32(5);
-                    evtRemunEntity.EvtRemun = reader.GetString(6);
-                    evtRemunEntity.DmDev_ideDmDev = reader.GetString(7);
-                    evtRemunEntity.DmDev_icodCateg = reader.GetString(8);
-                    evtRemunEntity.IdeEstabLot_tpInsc = reader.GetInt32(9);
-                    evtRemunEntity.IdeEstabLot_nrInsc = reader.GetString(10);
-                    evtRemunEntity.IdeEstabLot_codLotacao = reader.GetString(11);
-                    evtRemunEntity.RemunPerApur_matricula = reader.GetString(12);
-                    evtRemunEntity.ItensRemun_codRubr = reader.GetString(13);
-                    evtRemunEntity.ItensRemun_ideTabRubr = reader.GetString(14);
-                    evtRemunEntity.ItensRemun_vrRubr = reader.GetDecimal(15);
-                    evtRemunEntity.InfoAgNocivo_grauExp = reader.GetString(16);
-                    evtRemunEntity.Nome_arquivo = reader.GetString(17);
-                    evtRemunEntity.ItensfatorRubr = reader.GetString(18);
-                    evtRemunEntity.ItensindApurIR = reader.GetString(19);
-                    evtRemunEntity.ItensRemun_qtdRubr = reader.GetString(20);
-                    evtRemunEntity.Situacao = reader.GetInt16(21);
-                    evtRemunEntity.Id_cadastro_envios = reader.GetInt32(22);
+                    evtRemunEntity.Id_usuario = reader.GetInt32(2);
+                    evtRemunEntity.Id_cad_evtremun = reader.GetInt32(3);
+                    evtRemunEntity.Id_dmdev = reader.GetInt32(4);
+                    evtRemunEntity.Id_dmdev_periodo_ideestablot = reader.GetInt32(5);
+                    evtRemunEntity.Id_periodo_ideestablot_matricula = reader.GetInt32(6);
+                    evtRemunEntity.EvtRemun = reader.GetString(7);
+                    evtRemunEntity.DmDev_ideDmDev = reader.GetString(8);
+                    evtRemunEntity.DmDev_icodCateg = reader.GetString(9);
+                    evtRemunEntity.IdeEstabLot_tpInsc = reader.GetInt32(10);
+                    evtRemunEntity.IdeEstabLot_nrInsc = reader.GetString(11);
+                    evtRemunEntity.IdeEstabLot_codLotacao = reader.GetString(12);
+                    evtRemunEntity.RemunPerApur_matricula = reader.GetString(13);
+                    evtRemunEntity.ItensRemun_codRubr = reader.GetString(14);
+                    evtRemunEntity.ItensRemun_ideTabRubr = reader.GetString(15);
+                    evtRemunEntity.ItensRemun_vrRubr = reader.GetDecimal(16).ToString();
+                    evtRemunEntity.InfoAgNocivo_grauExp = reader.GetString(17);
+                    evtRemunEntity.Nome_arquivo = reader.GetString(18);
+                    evtRemunEntity.ItensfatorRubr = reader.GetString(19);
+                    evtRemunEntity.ItensindApurIR = reader.GetString(20);
+                    evtRemunEntity.ItensRemun_qtdRubr = reader.GetString(21);
+                    evtRemunEntity.Situacao = reader.GetInt16(22);
+                    evtRemunEntity.Id_cadastro_envios = reader.GetInt32(23);
 
                     listaEventos.Add(evtRemunEntity);
                 }
@@ -864,7 +872,7 @@ namespace Esocial_Service.Entidades
                     evtRemunEntity.Id_projeto = reader.GetInt32(1);
                     evtRemunEntity.Id_cad_evtremun = reader.GetInt32(2);
                     evtRemunEntity.Id_s_1200_dmdev = reader.GetInt32(3);
-                    evtRemunEntity.DtAcConv = reader.GetString(4);
+                    evtRemunEntity.DtAcConv = reader.GetDateTime(4);
                     evtRemunEntity.TpAcConv = reader.GetString(5);
                     evtRemunEntity.CompAcConv = reader.GetString(6);
                     evtRemunEntity.DtEfAcConv = reader.GetString(7);

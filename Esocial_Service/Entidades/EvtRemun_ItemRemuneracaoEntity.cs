@@ -24,7 +24,7 @@ namespace Esocial_Service.Entidades
         string remunPerApur_matricula;
         string itensRemun_codRubr;
         string itensRemun_ideTabRubr;
-        decimal itensRemun_vrRubr;
+        string itensRemun_vrRubr;
         string infoAgNocivo_grauExp;
         string nome_arquivo;
         string itensfatorRubr;
@@ -241,7 +241,7 @@ namespace Esocial_Service.Entidades
             }
         }
 
-        public decimal ItensRemun_vrRubr
+        public string ItensRemun_vrRubr
         {
             get
             {

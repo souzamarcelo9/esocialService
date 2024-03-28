@@ -49,18 +49,19 @@ namespace Esocial_Service.Dominio
             //verbas rescisorias
             //DmDev  RECIBO 1          
             recibo = new DmDev();
+            recibo.InfoPerApur = new TInfoPerApuracao();
             recibo.IdeDmDev = "DEMO020200A3953";
 
-            recibo.IdeEstabLot = new IdeEstabLot();
-            recibo.IdeEstabLot.tpInsc = 1;
-            recibo.IdeEstabLot.nrInsc = "04400011000100";
-            recibo.IdeEstabLot.codLotacao = "DEMO0200000000000000000001";
+            recibo.InfoPerApur.IdeEstabLot = new IdeEstabLot();
+            recibo.InfoPerApur.IdeEstabLot.TpInsc = 1;
+            recibo.InfoPerApur.IdeEstabLot.NrInsc = "04400011000100";
+            recibo.InfoPerApur.IdeEstabLot.CodLotacao = "DEMO0200000000000000000001";
 
-            recibo.IdeEstabLot.RemunPerApuracao = new RemunPeriodoApuracao();
-            recibo.IdeEstabLot.RemunPerApuracao.Matricula = "DEMO0200000000000000000718";
+            recibo.InfoPerApur.IdeEstabLot.RemunPerApuracao = new RemunPeriodoApuracao();
+            recibo.InfoPerApur.IdeEstabLot.RemunPerApuracao.Matricula = "DEMO0200000000000000000718";
 
             //inicia o array de recibos
-            recibo.IdeEstabLot.RemunPerApuracao.DetVerbas = new List<TDetVerbasItem>();
+            recibo.InfoPerApur.IdeEstabLot.RemunPerApuracao.DetVerbas = new List<TDetVerbasItem>();
 
             //ITEMS - RECIBOS DA FOLHA
             itemRemun = new TDetVerbasItem();
@@ -69,7 +70,7 @@ namespace Esocial_Service.Dominio
             itemRemun.qtdRubr = 180;
             itemRemun.vrRubr = 3255.41M;
             itemRemun.IndApuracaoField = 0;
-            recibo.IdeEstabLot.RemunPerApuracao.DetVerbas.Add(itemRemun);
+            recibo.InfoPerApur.IdeEstabLot.RemunPerApuracao.DetVerbas.Add(itemRemun);
 
             itemRemun = new TDetVerbasItem();
             itemRemun.codRubr = "DEMO0200000000000000000021";
@@ -78,7 +79,7 @@ namespace Esocial_Service.Dominio
             itemRemun.FatorRubr = 60;
             itemRemun.vrRubr = 298.34M;
             itemRemun.IndApuracaoField = 0;
-            recibo.IdeEstabLot.RemunPerApuracao.DetVerbas.Add(itemRemun);
+            recibo.InfoPerApur.IdeEstabLot.RemunPerApuracao.DetVerbas.Add(itemRemun);
 
             itemRemun = new TDetVerbasItem();
             itemRemun.codRubr = "DEMO0200000000000000000028";
@@ -87,28 +88,28 @@ namespace Esocial_Service.Dominio
             //itemRemun.FatorRubr = 60;
             itemRemun.vrRubr = 57.37M;
             itemRemun.IndApuracaoField = 0;
-            recibo.IdeEstabLot.RemunPerApuracao.DetVerbas.Add(itemRemun);
+            recibo.InfoPerApur.IdeEstabLot.RemunPerApuracao.DetVerbas.Add(itemRemun);
 
             itemRemun = new TDetVerbasItem();
             itemRemun.codRubr = "DEMO0200000000000000000064";
             itemRemun.ideTabRubr = "1";
             itemRemun.vrRubr = 1302.16M;
             itemRemun.IndApuracaoField = 0;
-            recibo.IdeEstabLot.RemunPerApuracao.DetVerbas.Add(itemRemun);
+            recibo.InfoPerApur.IdeEstabLot.RemunPerApuracao.DetVerbas.Add(itemRemun);
 
             itemRemun = new TDetVerbasItem();
             itemRemun.codRubr = "DEMO0200000000000000000077";
             itemRemun.ideTabRubr = "1";
             itemRemun.vrRubr = 15;
             itemRemun.IndApuracaoField = 0;
-            recibo.IdeEstabLot.RemunPerApuracao.DetVerbas.Add(itemRemun);
+            recibo.InfoPerApur.IdeEstabLot.RemunPerApuracao.DetVerbas.Add(itemRemun);
 
             itemRemun = new TDetVerbasItem();
             itemRemun.codRubr = "DEMO0200000000000000000082";
             itemRemun.ideTabRubr = "1";
             itemRemun.vrRubr = 288.88M;
             itemRemun.IndApuracaoField = 0;
-            recibo.IdeEstabLot.RemunPerApuracao.DetVerbas.Add(itemRemun);
+            recibo.InfoPerApur.IdeEstabLot.RemunPerApuracao.DetVerbas.Add(itemRemun);
 
             itemRemun = new TDetVerbasItem();
             itemRemun.codRubr = "DEMO0200000000000000000185";
@@ -116,7 +117,7 @@ namespace Esocial_Service.Dominio
             itemRemun.qtdRubr = 12;
             itemRemun.vrRubr = 342.33M;
             itemRemun.IndApuracaoField = 0;
-            recibo.IdeEstabLot.RemunPerApuracao.DetVerbas.Add(itemRemun);
+            recibo.InfoPerApur.IdeEstabLot.RemunPerApuracao.DetVerbas.Add(itemRemun);
 
             itemRemun = new TDetVerbasItem();
             itemRemun.codRubr = "DEMO0200000000000000000086";
@@ -124,28 +125,28 @@ namespace Esocial_Service.Dominio
             itemRemun.qtdRubr = 15;
             itemRemun.vrRubr = 107.08M;
             itemRemun.IndApuracaoField = 0;
-            recibo.IdeEstabLot.RemunPerApuracao.DetVerbas.Add(itemRemun);
+            recibo.InfoPerApur.IdeEstabLot.RemunPerApuracao.DetVerbas.Add(itemRemun);
 
             itemRemun = new TDetVerbasItem();
             itemRemun.codRubr = "DEMO0200000000000000000095";
             itemRemun.ideTabRubr = "1";
             itemRemun.vrRubr = 0.5M;
             itemRemun.IndApuracaoField = 0;
-            recibo.IdeEstabLot.RemunPerApuracao.DetVerbas.Add(itemRemun);
+            recibo.InfoPerApur.IdeEstabLot.RemunPerApuracao.DetVerbas.Add(itemRemun);
 
             itemRemun = new TDetVerbasItem();
             itemRemun.codRubr = "DEMO0200000000000000000390";
             itemRemun.ideTabRubr = "1";
             itemRemun.vrRubr = 0.5M;
             itemRemun.IndApuracaoField = 0;
-            recibo.IdeEstabLot.RemunPerApuracao.DetVerbas.Add(itemRemun);
+            recibo.InfoPerApur.IdeEstabLot.RemunPerApuracao.DetVerbas.Add(itemRemun);
 
             itemRemun = new TDetVerbasItem();
             itemRemun.codRubr = "DEMO0200000000000000000106";
             itemRemun.ideTabRubr = "1";
             itemRemun.vrRubr = 5;
             itemRemun.IndApuracaoField = 0;
-            recibo.IdeEstabLot.RemunPerApuracao.DetVerbas.Add(itemRemun);
+            recibo.InfoPerApur.IdeEstabLot.RemunPerApuracao.DetVerbas.Add(itemRemun);
 
             itemRemun = new TDetVerbasItem();
             itemRemun.codRubr = "SB DED MENSAL";
@@ -153,7 +154,7 @@ namespace Esocial_Service.Dominio
             itemRemun.qtdRubr = 180;
             itemRemun.vrRubr = 600.05M;
             itemRemun.IndApuracaoField = 0;
-            recibo.IdeEstabLot.RemunPerApuracao.DetVerbas.Add(itemRemun);
+            recibo.InfoPerApur.IdeEstabLot.RemunPerApuracao.DetVerbas.Add(itemRemun);
 
             itemRemun = new TDetVerbasItem();
             itemRemun.codRubr = "SB INF MENSAL";
@@ -161,11 +162,11 @@ namespace Esocial_Service.Dominio
             itemRemun.qtdRubr = 180;
             itemRemun.vrRubr = 600.05M;
             itemRemun.IndApuracaoField = 0;
-            recibo.IdeEstabLot.RemunPerApuracao.DetVerbas.Add(itemRemun);
+            recibo.InfoPerApur.IdeEstabLot.RemunPerApuracao.DetVerbas.Add(itemRemun);
 
             //"INFOAGNOCIVO"
-            recibo.IdeEstabLot.RemunPerApuracao.InfoAgNocivo = new InfoAgNocivo();
-            recibo.IdeEstabLot.RemunPerApuracao.InfoAgNocivo.grauExp = 1;
+            recibo.InfoPerApur.IdeEstabLot.RemunPerApuracao.InfoAgNocivo = new InfoAgNocivo();
+            recibo.InfoPerApur.IdeEstabLot.RemunPerApuracao.InfoAgNocivo.grauExp = 1;
 
             evento2299.InfoDeslig.VerbasResc = new TVerbasRescisorias();
             evento2299.InfoDeslig.VerbasResc.DmDev = new List<DmDev>();
@@ -211,11 +212,11 @@ namespace Esocial_Service.Dominio
                    new XElement(ns + "ideDmDev", dmDev.IdeDmDev),
                          new XElement(ns + "infoPerApur",
                                new XElement(ns + "ideEstabLot",
-                                  new XElement(ns + "tpInsc", dmDev.IdeEstabLot.tpInsc),
-                                  new XElement(ns + "nrInsc", dmDev.IdeEstabLot.nrInsc),
-                                  new XElement(ns + "codLotacao", dmDev.IdeEstabLot.codLotacao),
+                                  new XElement(ns + "tpInsc", dmDev.InfoPerApur.IdeEstabLot.TpInsc),
+                                  new XElement(ns + "nrInsc", dmDev.InfoPerApur.IdeEstabLot.NrInsc),
+                                  new XElement(ns + "codLotacao", dmDev.InfoPerApur.IdeEstabLot.CodLotacao),
 
-                 dmDev.IdeEstabLot.RemunPerApuracao.DetVerbas.Select(itemRemun =>
+                 dmDev.InfoPerApur.IdeEstabLot.RemunPerApuracao.DetVerbas.Select(itemRemun =>
                                         new XElement(ns + "detVerbas",
                                          new XElement(ns + "codRubr", itemRemun.codRubr),
                                          new XElement(ns + "ideTabRubr", itemRemun.ideTabRubr),
@@ -223,7 +224,7 @@ namespace Esocial_Service.Dominio
                                          new XElement(ns + "vrRubr", itemRemun.vrRubr),
                                          new XElement(ns + "indApurIR", itemRemun.IndApuracaoField))),
                                    new XElement(ns + "infoAgNocivo",
-                                        new XElement(ns + "grauExp", dmDev.IdeEstabLot.RemunPerApuracao.InfoAgNocivo.grauExp)
+                                        new XElement(ns + "grauExp", dmDev.InfoPerApur.IdeEstabLot.RemunPerApuracao.InfoAgNocivo.grauExp)
                                    ))
                               ))
 

@@ -12,7 +12,7 @@ namespace Esocial_Service.Entidades
         int id_projeto;
         int id_cad_evtremun;
         int id_s_1200_dmdev;
-        string dtAcConv;
+        DateTime dtAcConv;
         string tpAcConv;
         string compAcConv;
         string dtEfAcConv;
@@ -71,7 +71,7 @@ namespace Esocial_Service.Entidades
             }
         }
 
-        public string DtAcConv
+        public DateTime DtAcConv
         {
             get
             {

@@ -8,13 +8,13 @@ namespace Esocial_Service.Classes
 {
     public class IdeADC
     {
-        string dtAcConv;
+        DateTime dtAcConv;
         string tpAcConv;
         string dsc;
         string remunSuc;
         IdePeriodo idePeriodo;
 
-        public string DtAcConv
+        public DateTime DtAcConv
         {
             get
             {

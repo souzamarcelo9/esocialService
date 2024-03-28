@@ -25,8 +25,7 @@ namespace Esocial_Service
     class Program
     {
         public static string pathS1200;
-        public static string pathS1210;
-        public static string xmlns1200 = "http://www.esocial.gov.br/schema/evt/evtRemun/v_S_01_02_00";
+        public static string pathS1210;        
         public static string xmlns1210 = "http://www.esocial.gov.br/schema/evt/evtPgtos/v_S_01_02_00";
         public static string xmlns2299 = "http://www.esocial.gov.br/schema/evt/evtDeslig/v_S_01_02_00";
         public static string xmlns3000 = "http://www.esocial.gov.br/schema/evt/evtExclusao/v_S_01_01_00";
@@ -65,17 +64,10 @@ namespace Esocial_Service
       
 
         public static void S_1200()
-        {            
-            string arquivoAssinado = String.Empty;
-            string xmlEvento = String.Empty;
+        {                        
             EventoRemun eventoRemunDomain = new EventoRemun();
-            EvtRemun1200 eventoRemun = eventoRemunDomain.PreencheEventoS_1200();
-            xmlEvento = eventoRemunDomain.GeraXmlEvento1200(eventoRemun);
-            arquivoAssinado = XmlUtil.AssinaXML("evtRemun", xmlEvento);
-
-            pathS1200 = EnvioLoteEventos.AdicionaXmlSLote(arquivoAssinado, xmlns1200,"evtRemun");
-            //
-            EsocialService.EnviaLoteEventos(pathS1200,false);
+            eventoRemunDomain.PreencheEventoS_1200();
+            
         }
 
         public static void S_2299()

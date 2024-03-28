@@ -1,5 +1,7 @@
 ﻿using Esocial_Service.Classes;
 using Esocial_Service.Entidades;
+using Esocial_Service.Eventos;
+using Esocial_Service.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +13,15 @@ namespace Esocial_Service.Dominio
 {
     public class EventoRemun
     {
-        public EvtRemun1200 PreencheEventoS_1200()
+        public static string xmlns1200 = "http://www.esocial.gov.br/schema/evt/evtRemun/v_S_01_02_00";
+        public void PreencheEventoS_1200()
         {
             EvtRemun1200 evento1200 = new EvtRemun1200();
             DmDev recibo;
             TItemRemuneracao itemRemun;
-
+            string arquivoAssinado = String.Empty;
+            string xmlEvento = String.Empty;
+            string pathS1200 = String.Empty;
             EventoRemunEntity evento1200Entity = new EventoRemunEntity();
             //evento1200Entity
             List<EventoRemunEntity> listaEventosDB = new List<EventoRemunEntity>();
@@ -39,11 +44,14 @@ namespace Esocial_Service.Dominio
             List<EvtRemun_AnteriorEntity> listaRemunAnterior = new List<EvtRemun_AnteriorEntity>();
             List<EvtRemun_InfoComplContEntity> listaInfoComplCont = new List<EvtRemun_InfoComplContEntity>();
 
+            ProjetosEntity projeto = new ProjetosEntity().Get().Where(it => it.Id == 105).First();
+
             foreach (var evento in listaEventosDB)
             {
 
                 evento1200 =  new EvtRemun1200();
                 //Idevento
+                evento1200.IdeEvento = new TIdeEveFopag();
                 evento1200.Id = evento.EvtRemun;
                 evento1200.IdeEvento.indRetif = 2;
                 evento1200.IdeEvento.nrRecibo = evento.Recibo_nrRecibo;
@@ -56,7 +64,7 @@ namespace Esocial_Service.Dominio
                 //IdeEmpregador
                 evento1200.IdeEmpregador = new TEmpregador();
                 evento1200.IdeEmpregador.tpInsc = 1;
-                evento1200.IdeEmpregador.nrInsc = "03572731000108";
+                evento1200.IdeEmpregador.nrInsc = projeto.Cnpj_empresa;
 
                 //idetrabalhador
                 evento1200.IdeTrabalhador = new IdeTrabalhador();
@@ -64,7 +72,7 @@ namespace Esocial_Service.Dominio
 
                 //infoMV
                 listaEvtRemunInfoMV = evento1200Entity.GetInfoMV()
-                                                      .Where(it => it.Id_projeto == 105
+                                                      .Where(it => it.Id_projeto == projeto.Id
                                                        && it.Id_cad_evtremun == evento.Id)
                                                        .ToList();
 
@@ -79,7 +87,7 @@ namespace Esocial_Service.Dominio
                     //empregatício com outra(s) empresa(s)
 
                     listaEvtInfoMvOutEmp = evento1200Entity.GetInfoMVRemunOutrEmpresa()
-                                                      .Where(it => it.Id_projeto == 105
+                                                      .Where(it => it.Id_projeto == projeto.Id
                                                        && it.Id_cad_evtremun == evento.Id
                                                        && it.Id_infoMV == info.Id)
                                                       .ToList();
@@ -107,7 +115,7 @@ namespace Esocial_Service.Dominio
                 evento1200.IdeTrabalhador.InfoComplem.SucessaoVinc = new List<TSucessaoVinc>();
 
                 listaEvtComplem = evento1200Entity.GetInfoCompl()
-                                                      .Where(it => it.Id_projeto == 105
+                                                      .Where(it => it.Id_projeto == projeto.Id
                                                        && it.Id_cad_evtremun == evento.Id)                                                       
                                                       .ToList();
 
@@ -118,7 +126,7 @@ namespace Esocial_Service.Dominio
                     evento1200.IdeTrabalhador.InfoComplem.DtNascto = infoComp.InfoComplem_dtNascto;///Obrigatório                                                                        
 
                     listaEvtComplemSuces = evento1200Entity.GetInfoComplSuces()
-                                                      .Where(it => it.Id_projeto == 105
+                                                      .Where(it => it.Id_projeto == projeto.Id
                                                        && it.Id_cad_evtremun == evento.Id
                                                        && it.Id_infoComplem == infoComp.Id)
                                                       .ToList();
@@ -144,7 +152,7 @@ namespace Esocial_Service.Dominio
                 //trabalhador com decisão favorável quanto à não incidência
                 //de contribuições sociais e/ou Imposto de Renda.
                 listaProcJud = evento1200Entity.GetProcJudTrab()
-                                                     .Where(it => it.Id_projeto == 105
+                                                     .Where(it => it.Id_projeto == projeto.Id
                                                       && it.Id_cad_evtremun == evento.Id)
                                                      .ToList();
 
@@ -163,7 +171,7 @@ namespace Esocial_Service.Dominio
                  //final s_1200_procjudtrab
 
                 listaInfoInterm = evento1200Entity.GetInfoInterm()
-                                                     .Where(it => it.Id_projeto == 105
+                                                     .Where(it => it.Id_projeto == projeto.Id
                                                       && it.Id_cad_evtremun == evento.Id)
                                                      .ToList();
 
@@ -182,7 +190,7 @@ namespace Esocial_Service.Dominio
             evento1200.DmDev = new List<DmDev>();
 
               listaDmDev = evento1200Entity.GetDmDev()
-                                                   .Where(it => it.Id_projeto == 105
+                                                   .Where(it => it.Id_projeto == projeto.Id
                                                     && it.Id_cad_evtremun == evento.Id)
                                                     .ToList();
             
@@ -192,7 +200,7 @@ namespace Esocial_Service.Dominio
                     //Identificação de cada um dos demonstrativos de valores devidos ao trabalhador.
                     recibo = new DmDev();
                     recibo.InfoPerApur = new TInfoPerApuracao();
-                    recibo.IdeDmDev = dmDev.DmDev_ideDmDev;//Obrigatório
+                    recibo.IdeDmDev = dmDev.DmDev_ideDmDev.ToString();//Obrigatório
                     recibo.CodCategField = dmDev.DmDev_icodCateg; //Obrigatório
 
                     //Identificação do estabelecimento e da lotação nos quais o
@@ -200,9 +208,11 @@ namespace Esocial_Service.Dominio
                     //$conta_lot_periodo_atual = 0;
 
                     listaEstbLot = evento1200Entity.GetDmDevIdeEstablot()
-                                                   .Where(it => it.Id_projeto == 105
-                                                    && it.Id_cad_evtremun == dmDev.Id)
+                                                   .Where(it => it.Id_projeto == projeto.Id
+                                                    && it.Id_s_1200_dmdev == dmDev.Id)
                                                    .ToList();
+
+                    recibo.InfoPerApur.IdeEstabLot = new IdeEstabLot();
 
                     foreach (var lotacao in listaEstbLot)
                     {
@@ -220,11 +230,12 @@ namespace Esocial_Service.Dominio
                         // $conta_matricula_atual = 0;
 
                         listaEstbLotMat = evento1200Entity.GetDmDevIdeEstablotMatricula()
-                                                      .Where(it => it.Id_projeto == 105
+                                                      .Where(it => it.Id_projeto == projeto.Id
                                                        && it.Id_dmdev_periodo_ideestablot == lotacao.Id)
                                                       .ToList();
 
 
+                        recibo.InfoPerApur.IdeEstabLot.RemunPerApuracao = new RemunPeriodoApuracao();
 
                         foreach (var matAtual in listaEstbLotMat)
                         {
@@ -242,7 +253,7 @@ namespace Esocial_Service.Dominio
                             }
 
                             listaItemsRemun = evento1200Entity.GetDmDevItemRemuneracao()
-                                                     .Where(it => it.Id_projeto == 105
+                                                     .Where(it => it.Id_projeto == projeto.Id
                                                       && it.Id_periodo_ideestablot_matricula == matAtual.Id
                                                       && it.Id_cad_evtremun == evento.Id
                                                       && it.Id_dmdev == dmDev.Id
@@ -251,7 +262,7 @@ namespace Esocial_Service.Dominio
                                                      .ToList();
 
                             //recibo.InfoPerApur = new TInfoPerApuracao();
-                            recibo.InfoPerApur.IdeEstabLot = new IdeEstabLot();
+                            //recibo.InfoPerApur.IdeEstabLot = new IdeEstabLot();
                             recibo.InfoPerApur.IdeEstabLot.RemunPerApuracao.RemunPerField = new List<TItemRemuneracao>();
 
                             foreach (var item in listaItemsRemun)
@@ -263,7 +274,7 @@ namespace Esocial_Service.Dominio
 
                                 if (item.ItensRemun_qtdRubr != "")
                                 {
-                                    if (int.Parse(item.ItensRemun_qtdRubr) < 0)
+                                    if (item.ItensRemun_qtdRubr != "0")
                                     {
                                         itmRemun.QtdRubr = item.ItensRemun_qtdRubr.Replace("-", ""); //Opcional
 
@@ -282,7 +293,7 @@ namespace Esocial_Service.Dominio
 
                                 //esse campo estava aqui porem no layout 1.0 noa tem esse compa vrunit somente no 2.5
                                 //$std->dmdev[$conta_DmDev]->ideestablot[$conta_lot_periodo_atual]->remunperapur[$conta_matricula_atual]->itensremun[$conta_itens_rem_atual]->vrunit = $row_itens_rem_atual['itensRemun_vrRubr']; //Obrigatório
-                                itmRemun.VrRubr = item.ItensRemun_vrRubr;
+                                itmRemun.VrRubr = item.ItensRemun_vrRubr.Replace(",",".");
 
                                 //Validação: Informação obrigatória e exclusiva se perApur >= [2021-07] (se indApuracao = [1]) ou se perApur >= [2021] (se indApuracao = [2]).
                                 //NO MANUAL ESTA 2021-07 COM BASE NA COMPETENCIA A INFORMAR E NAO NO PERIODO
@@ -290,8 +301,8 @@ namespace Esocial_Service.Dominio
 
                                 Int32 competencia_exigida = (int)DateTime.UtcNow.Subtract(new DateTime(2021, 7, 1)).TotalSeconds;
                                 Int32 competencia_informar = (int)DateTime.UtcNow.Subtract(
-                                    new DateTime(int.Parse(evento.IdeEvento_perApur.Substring(0, 3)),//ano
-                                                 int.Parse(evento.IdeEvento_perApur.Substring(5, 6)), //mes
+                                    new DateTime(int.Parse(evento.IdeEvento_perApur.Substring(0, 4)),//ano
+                                                 int.Parse(evento.IdeEvento_perApur.Substring(5)), //mes
                                                  1)).TotalSeconds;
 
 
@@ -354,14 +365,15 @@ namespace Esocial_Service.Dominio
                                 }
                                 recibo.InfoPerApur.IdeEstabLot.RemunPerApuracao.RemunPerField.Add(itmRemun);
                                 //adiciona o recibo otratado
-                                evento1200.DmDev.Add(recibo);
-                            }// FIM ITENS REMUNERAÇÃO
+                                
+                            }// FIM ITENS REMUNERAÇÃO adiciona a lista
+                            evento1200.DmDev.Add(recibo);
                         }// FIM listaEstbLotMat
 
                     } //FIM  s_1200_dmdev_periodo_ideestablot
 
                     listaPeriodoAnterior = evento1200Entity.GetDmDevAnteriorIdeAdc()
-                                                     .Where(it => it.Id_projeto == 105                                                      
+                                                     .Where(it => it.Id_projeto == projeto.Id
                                                       && it.Id_cad_evtremun == evento.Id
                                                       && it.Id_s_1200_dmdev == dmDev.Id)
                                                      .ToList();
@@ -374,7 +386,7 @@ namespace Esocial_Service.Dominio
 
                     //Identificação do instrumento ou situação ensejadora da
                     //remuneração relativa a períodos de apuração anteriores
-                     if (resultado_ideac_anterior.DtAcConv == "0000-00-00")
+                     if (resultado_ideac_anterior.DtAcConv.ToString() == "0000-00-00")
                      {
 
                      }else
@@ -388,7 +400,7 @@ namespace Esocial_Service.Dominio
 
 
                         listaPerAntPerRef = evento1200Entity.GetDmDevAnteriorIdeAdcPerRef()
-                                                        .Where(it => it.Id_projeto == 105
+                                                        .Where(it => it.Id_projeto == projeto.Id
                                                          && it.Id_dmdev_anterior_ideadc == resultado_ideac_anterior.Id)                                                         
                                                         .ToList();
 
@@ -404,7 +416,7 @@ namespace Esocial_Service.Dominio
                             //recibo.InfoPerAnt.IdeADC.IdePeriodo.Add(perRefAnterior);
 
                             listaPerAntIdeEstabLot = evento1200Entity.GetDmDevAnteriorIdeAdcIdeEstabLot()
-                                                        .Where(it => it.Id_projeto == 105
+                                                        .Where(it => it.Id_projeto == projeto.Id
                                                          && it.Id_anterior_ideadc_perref == resultado_perref_anterior.Id)
                                                         .ToList();
                         
@@ -421,7 +433,7 @@ namespace Esocial_Service.Dominio
                                 recibo.InfoPerAnt.IdeADC.IdePeriodo.IdeEstabLot.CodLotacao = resultado_ideestablot_anterior.Anterior_ideEstabLot_codLotacao;
 
                                 listaPerAntIdeEstabLotMat = evento1200Entity.GetDmDevAnteriorIdeAdcIdeEstabLotMatricula()
-                                                        .Where(it => it.Id_projeto == 105
+                                                        .Where(it => it.Id_projeto == projeto.Id
                                                          && it.Id_anterior_ideadc_idePeriodo_ideEstabLot == resultado_ideestablot_anterior.Id)
                                                         .ToList();
 
@@ -470,7 +482,7 @@ namespace Esocial_Service.Dominio
                                             itemRemuneracao.VrUnit = Convert.ToDecimal(resultado_itensremun_anterior.Remuneracao_anterior_vrUnit);
                                         }
 
-                                        itemRemuneracao.VrRubr = Convert.ToDecimal(resultado_itensremun_anterior.Remuneracao_anterior_vrRubr);
+                                        itemRemuneracao.VrRubr = resultado_itensremun_anterior.Remuneracao_anterior_vrRubr.Replace(",",".");
 
 
                                   //Validação: Informação obrigatória e exclusiva se perApur >= [2021-07] (se indApuracao = [1]) ou se perApur >= [2021] (se indApuracao = [2]).
@@ -479,8 +491,8 @@ namespace Esocial_Service.Dominio
 
                                   Int32 competencia_exigida = (int)DateTime.UtcNow.Subtract(new DateTime(2021, 7, 1)).TotalSeconds;
                                   Int32 competencia_informar = (int)DateTime.UtcNow.Subtract(
-                                            new DateTime(int.Parse(evento.IdeEvento_perApur.Substring(0, 3)),//ano
-                                                         int.Parse(evento.IdeEvento_perApur.Substring(5, 6)), //mes
+                                            new DateTime(int.Parse(evento.IdeEvento_perApur.Substring(0, 4)),//ano
+                                                         int.Parse(evento.IdeEvento_perApur.Substring(5)), //mes
                                                          1)).TotalSeconds;
                                       
                                         if (evento.IdeEvento_perApur.Length >= 5)
@@ -534,8 +546,8 @@ namespace Esocial_Service.Dominio
                     }
 
                     listaInfoComplCont = evento1200Entity.GetInfoComplCont()
-                                                      .Where(it => it.Id_projeto == 105 &&
-                                                       it.Id_dmdev == evento.Id)
+                                                      .Where(it => it.Id_projeto == projeto.Id
+                                                       && it.Id_dmdev == evento.Id)
                                                       .ToList();
 
 
@@ -553,11 +565,15 @@ namespace Esocial_Service.Dominio
 
 
              }//RECIBOS - DMDEV{}
-             
 
+                xmlEvento = this.GeraXmlEvento1200(evento1200);
+                arquivoAssinado = XmlUtil.AssinaXML("evtRemun", xmlEvento);
+
+                pathS1200 = EnvioLoteEventos.AdicionaXmlSLote(arquivoAssinado, xmlns1200, "evtRemun");
+                //
+                EsocialService.EnviaLoteEventos(pathS1200, false);
             }// foreach eventos1200 - PRINCIPAL
-
-            return evento1200;
+            //return evento1200;
            
         }
 

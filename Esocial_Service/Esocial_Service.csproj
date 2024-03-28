@@ -182,6 +182,7 @@
     <Compile Include="Entidades\EvtRemun_InfoMV_RemunOutrEmpEntity.cs" />
     <Compile Include="Entidades\EvtRemun_ItemRemuneracaoEntity.cs" />
     <Compile Include="Entidades\EvtRemun_ProcJudEntity.cs" />
+    <Compile Include="Entidades\ProjetosEntity.cs" />
     <Compile Include="Eventos\EnvioLoteEventos.cs" />
     <Compile Include="Eventos\EvtDeslig2299.cs" />
     <Compile Include="Eventos\EvtExclusao3000.cs" />

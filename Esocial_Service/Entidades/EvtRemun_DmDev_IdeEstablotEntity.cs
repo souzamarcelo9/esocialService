@@ -13,7 +13,7 @@ namespace Esocial_Service.Entidades
         int id_usuario;
         int id_cad_evtremun;
         int id_s_1200_dmdev;
-        sbyte ideEstabLot_tpInsc;
+        int ideEstabLot_tpInsc;
         string ideEstabLot_nrInsc;
         string ideEstabLot_codLotacao;
         string ideEstabLot_qtdDiasAv;
@@ -84,7 +84,7 @@ namespace Esocial_Service.Entidades
             }
         }
 
-        public sbyte IdeEstabLot_tpInsc
+        public int IdeEstabLot_tpInsc
         {
             get
             {

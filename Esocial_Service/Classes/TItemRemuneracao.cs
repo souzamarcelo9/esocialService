@@ -20,7 +20,7 @@ namespace Esocial_Service
 
         private bool vrUnitFieldSpecified;
 
-        private decimal vrRubrField;
+        private string vrRubrField;
 
         private sbyte indApuracaoField;
 
@@ -108,7 +108,7 @@ namespace Esocial_Service
         }
 
         /// <remarks/>
-        public decimal VrRubr
+        public string VrRubr
         {
             get
             {

@@ -8,7 +8,7 @@ namespace Esocial_Service
 {
     public class IdeEstabLot
     {
-        private sbyte tpInscField;
+        private int tpInscField;
 
         private string nrInscField;
 
@@ -22,7 +22,7 @@ namespace Esocial_Service
 
 
         /// <remarks/>
-        public sbyte TpInsc
+        public int TpInsc
         {
             get
             {
